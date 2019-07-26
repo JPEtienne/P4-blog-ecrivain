@@ -5,7 +5,7 @@ include('../common/header.php');
 $posts = new Post($db);
 
 if (isset($_POST['btnUpdate'])) {
-    $result = $posts->updatePost($_POST['title'], $_POST['description'], $_GET['slug']);
+    $result = $posts->updatePost($_POST['title'], $_POST['desc'], $_GET['slug']);
     if ($result == true) {
         echo'<div class="text-center alert alert-success">Post modifié avec succès</div>';
     }
@@ -27,7 +27,7 @@ if (isset($_POST['btnUpdate'])) {
 
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" id="editor" class="form-control" cols="10" ><?=$post['description'];?></textarea>
+                            <textarea name="desc" id="editor" class="form-control" cols="10" ><?=$post['description'];?></textarea>
                         </div>
 
                         <div class="form-group">
@@ -47,7 +47,7 @@ if (isset($_POST['btnUpdate'])) {
     </div>
 </div>
 <script>
-    CKEDITOR.replace('description', {
+    CKEDITOR.replace('desc', {
         language: 'fr'
     });
 </script>

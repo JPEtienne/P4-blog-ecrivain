@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Billet simple pour l'Alaska</title>
-    <link rel="icon" type="image/ico" href="public/images/favicon.ico"
+    <link rel="icon" type="image/ico" href="public/images/favicon.ico">
     <meta name="description" content="Blog de publication en ligne du romain Billet simple pour l'Alaska">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="public/css/main.css" />

@@ -8,10 +8,10 @@ $post = new Post($db);
 $tags = new Tag($db);
 if (isset($_POST['btnSubmit'])) {
     $date = date('Y-m-d');
-    if (!empty($_POST['title']) && !empty($_POST['description'])) {
+    if (!empty($_POST['title']) && !empty($_POST['desc'])) {
 
         $title = strip_tags($_POST['title']);
-        $description = $_POST['description'];
+        $description = $_POST['desc'];
         $slug = createSlug($title);
         $checkSlug = mysqli_query($db,"SELECT * FROM posts WHERE slug='$slug'");
         $result = mysqli_num_rows($checkSlug);
@@ -47,8 +47,8 @@ if (isset($_POST['btnSubmit'])) {
                         </div>
 
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea name="description" id="editor" class="form-control" cols="10" ></textarea>
+                            <label for="desc">Description</label>
+                            <textarea name="desc" id="editor" class="form-control" cols="10" ></textarea>
                         </div>
 
                         <div class="form-group">
@@ -73,7 +73,7 @@ if (isset($_POST['btnSubmit'])) {
     </div>
 </div>
 <script>
-    CKEDITOR.replace('description', {
+    CKEDITOR.replace('desc', {
         language: 'fr'
     });
 </script>

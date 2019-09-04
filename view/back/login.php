@@ -2,7 +2,7 @@
 include('../../functions/include_login.php');
 include('../common/header.php');
 
-$user = new Account($db);
+$user = new Account(DB::getInstance());
 if (isset($_POST['btnLogin'])) {
     $user->login($_POST['username'], md5($_POST['password']));
 }
@@ -18,7 +18,7 @@ if (isset($_POST['btnLogin'])) {
             </div>
             <div class="form-group">	
                 <label for="password">Mot de passe</label>
-                <input type="text" name="password" class="form-control">
+                <input type="password" name="password" class="form-control">
             </div>
             <div class="form-group">	
                 <button type="submit" name="btnLogin" class="btn btn-danger">connexion</button>

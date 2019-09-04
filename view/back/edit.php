@@ -2,7 +2,7 @@
 include('../../functions/include_views.php');
 include('../common/header.php');
 
-$posts = new Post($db);
+$posts = new Post(DB::getInstance());
 
 if (isset($_POST['btnUpdate'])) {
     $result = $posts->updatePost($_POST['title'], $_POST['desc'], $_GET['slug']);

@@ -9,9 +9,8 @@ class Account {
     }
 
     public function login($username, $password) {
-        $sql = "SELECT username, password FROM users WHERE username='$username' AND password='$password'";
-        $result = mysqli_query($this->db, $sql);
-        if (mysqli_num_rows($result) > 0) {
+        $sql = $this->db->query("SELECT username, password FROM users WHERE username='$username' AND password='$password'");
+        if ($sql->rowCount() > 0) { 
             $_SESSION['username'] = $_POST['username'];
             header("location:office-1");
         }

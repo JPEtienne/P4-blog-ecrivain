@@ -2,8 +2,8 @@
 include('../../functions/include_views.php');
 include('../common/header.php');
 
-$posts = new Post($db);
-$comments = new Comment($db);
+$posts = new Post(DB::getInstance());
+$comments = new Comment(DB::getInstance());
 ?>
 
 <div class="container">
@@ -19,7 +19,7 @@ $comments = new Comment($db);
     </div>
     <?php } ?>
     <div class="comment-post">
-    <h4>Commentaires (<?=$comments->countComments($_GET['slug'])?>)</h4>
+    <h4>Commentaires (<?=$comments->countComments($_GET['slug']);?>)</h4>
     <?php if(isset($_POST['btnComment'])) {
         $date = date('Y-m-d');
         $status = 1;

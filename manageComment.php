@@ -1,8 +1,8 @@
 <?php 
-include('model/Comment.php'); 
-include('db.php'); 
+include($_SERVER['DOCUMENT_ROOT'].'/model/Comment.php'); 
+include($_SERVER['DOCUMENT_ROOT'].'/Db.php'); 
 
-$comment = new Comment($db);
+$comment = new Comment(DB::getInstance());
 if (isset($_GET['signal'])) {
     $comment->signalComment($_GET['signal']);
     header('Location:post-'.$_GET['slug']);  

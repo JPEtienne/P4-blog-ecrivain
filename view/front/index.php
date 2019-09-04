@@ -2,8 +2,8 @@
 include('../../functions/include_views.php');
 include('../common/header.php');
 
-$posts = new Post($db);
-$tags = new Tag($db);
+$posts = new Post(DB::getInstance());
+$tags = new Tag(DB::getInstance());
 
 ?>
 <div class="container">
@@ -29,7 +29,7 @@ $tags = new Tag($db);
         <?php } ?>
             <?php if (isset($_GET['page'])) { ?>
             <ul class="pagination">
-                <?php $row = $posts->countPostPages()[0];
+                <?php $row = $posts->countPostPages();
                 $totalPages = ceil($row/4); ?>
                 <li class="page-item" style="<?= $_GET['page'] <= 1 ?'display:none;':'';?>"><a class="page-link" href="home-1"><i class="fas fa-angle-double-left"></i></a></li>
                 <li class="page-item" style="<?= $_GET['page'] <= 1 ?'display:none;':'';?>"><a class="page-link" href="home-<?=$_GET['page']-1?>"><i class="fas fa-chevron-left"></i></a></li>

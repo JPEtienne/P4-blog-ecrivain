@@ -2,8 +2,8 @@
 include('../../functions/include_views.php');
 include('../common/header.php');
 
-$posts = new Post($db);
-$comment = new Comment($db);
+$posts = new Post(DB::getInstance());
+$comment = new Comment(DB::getInstance());
 ?>
 
 <div class="container">
@@ -64,7 +64,7 @@ $comment = new Comment($db);
 
     <?php if (isset($_GET['page'])) { ?>
         <ul class="pagination">
-            <?php $row = $posts->countPostPages()[0];
+            <?php $row = $posts->countPostPages();
             $totalPages = ceil($row/4); ?>
             <li class="page-item" style="<?= $_GET['page'] <= 1 ?'display:none;':'';?>"><a class="page-link" href="office-1"><i class="fas fa-angle-double-left"></i></a></li>
             <li class="page-item" style="<?= $_GET['page'] <= 1 ?'display:none;':'';?>"><a class="page-link" href="office-<?=$_GET['page']-1?>"><i class="fas fa-chevron-left"></i></a></li>

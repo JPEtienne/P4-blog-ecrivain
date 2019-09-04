@@ -8,50 +8,71 @@ class Comment {
     }
 
     public function comment($name, $email, $description, $slug, $created, $status) {
-        $sql = "INSERT INTO comments(name, email, description, slug, created_at, status) VALUES('$name', '$email', '$description', '$slug', '$created', '$status')";
-        $result = mysqli_query($this->db, $sql);
-        return $result;
+        $sql = $this->db->prepare("INSERT INTO comments(name, email, description, slug, created_at, status) VALUES(?, ?, ?, ?, ?, ?)");
+        $sql->execute(array(
+            $name,
+            $email,
+            $description,
+            $slug,
+            $created,
+            $status
+        ));
+        return $sql;
     }
 
     public function getComment($slug) {
-        $sql = "SELECT * FROM comments WHERE slug='$slug' AND status=1";
-        $result = mysqli_query($this->db, $sql);
-        return $result;
+        $sql = $this->db->prepare("SELECT * FROM comments WHERE slug=? AND status=1");
+        $sql->execute(array(
+            $slug
+        ));
+        return $sql;
     }
 
     public function countComments($slug) {
-        $sql = "SELECT * FROM comments WHERE slug='$slug' AND status=1";
-        $result = mysqli_query($this->db, $sql);
-        return mysqli_num_rows($result);
+        $sql = $this->db->prepare("SELECT * FROM comments WHERE slug=? AND status=1");
+        $sql->execute(array(
+            $slug
+        ));
+        return $sql->rowCount();
     }
 
     public function signalComment($id) {
-        $sql = "UPDATE comments SET alert_signal=1 WHERE id=$id";
-        $result = mysqli_query($this->db, $sql);
-        return $result;
+        $sql = $this->db->prepare("UPDATE comments SET alert_signal=1 WHERE id=?");
+        $sql->execute(array(
+            $id
+        ));
+        return $sql;
     }
 
     public function getCommentBySignal() {
-        $sql = "SELECT * FROM comments WHERE alert_signal>0";
-        $result = mysqli_query($this->db, $sql);
-        return $result;
+        $sql = $this->db->query("SELECT * FROM comments WHERE alert_signal>0");
+        return $sql;
     }
 
     public function validateComment($id) {
-        $sql = "UPDATE comments SET alert_signal=0 WHERE id=$id";
-        $result = mysqli_query($this->db, $sql);
-        return $result;    
+        $id = trim($id, "'");        
+        $sql = $this->db->prepare("UPDATE comments SET alert_signal=0 WHERE id=?");
+        $sql->execute(array(
+            $id
+        ));
+        return $sql;    
     }
 
     public function disableComment($id) {
-        $sql = "UPDATE comments SET status=0, alert_signal=0 WHERE id=$id";
-        $result = mysqli_query($this->db, $sql);
-        return $result; 
+        $id = trim($id, "'");        
+        $sql = $this->db->prepare("UPDATE comments SET status=0, alert_signal=0 WHERE id=?");
+        $sql->execute(array(
+            $id
+        ));
+        return $sql; 
     }
 
     public function deleteComment($id) {
-        $sql = "DELETE FROM comments WHERE id=$id";
-        $result = mysqli_query($this->db, $sql);
-        return $result; 
+        $id = trim($id, "'");
+        $sql = $this->db->prepare("DELETE FROM comments WHERE id=?");
+        $sql->execute(array(
+            $id
+        ));
+        return $sql; 
     }
 }

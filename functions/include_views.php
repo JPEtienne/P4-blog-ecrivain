@@ -1,6 +1,6 @@
 
 <?php 
-include('../../db.php');
+include('../../Db.php');
 require('../../model/Autoloader.php');
 include('../../Session.php');
 

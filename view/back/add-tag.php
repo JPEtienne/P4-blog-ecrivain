@@ -2,7 +2,7 @@
 include('../../functions/include_views.php');
 include('../common/header.php');
 
-$tags = new Tag($db);
+$tags = new Tag(DB::getInstance());
 ?>
 
 <div class="container">

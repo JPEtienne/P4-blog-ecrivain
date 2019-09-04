@@ -4,8 +4,8 @@ include('../common/header.php');
 ?>
 
 <?php 
-$post = new Post($db);
-$tags = new Tag($db);
+$post = new Post(DB::getInstance());
+$tags = new Tag(DB::getInstance());
 if (isset($_POST['btnSubmit'])) {
     $date = date('Y-m-d');
     if (!empty($_POST['title']) && !empty($_POST['desc'])) {
@@ -13,12 +13,9 @@ if (isset($_POST['btnSubmit'])) {
         $title = strip_tags($_POST['title']);
         $description = $_POST['desc'];
         $slug = createSlug($title);
-        $checkSlug = mysqli_query($db,"SELECT * FROM posts WHERE slug='$slug'");
-        $result = mysqli_num_rows($checkSlug);
-        if ($result>0) {
-            foreach($checkSlug as $cslug) {
-                $newSlug = $slug.uniqid();
-            }
+        $checkSlug = $post->checkPostSlug($slug);
+        if ($checkSlug == false) {
+        $newSlug = $slug.uniqid();
         $record = $post->addPost($title, $description, uploadImage(), $date, $newSlug);
         } else {
         $record = $post->addPost($title, $description, uploadImage(), $date, $slug);

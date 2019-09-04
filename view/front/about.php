@@ -1,7 +1,7 @@
 <?php 
 include('../../functions/include_views.php');
 include('../common/header.php');
-$infos = new Info($db);
+$infos = new Info(DB::getInstance());
 ?>
 
 <div class="container">

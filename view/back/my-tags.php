@@ -3,7 +3,7 @@ include('../../functions/include_views.php');
 include('../common/header.php');
 Autoloader::register();
 
-$tags = new Tag($db);
+$tags = new Tag(DB::getInstance());
 ?>
 
 <div class="container">

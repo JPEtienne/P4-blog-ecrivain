@@ -1,8 +1,8 @@
 <?php
-include('model/Tag.php');
-include('db.php');
+include($_SERVER['DOCUMENT_ROOT'].'/model/Tag.php');
+include($_SERVER['DOCUMENT_ROOT'].'/Db.php');
 
-$tags = new Tag($db);
+$tags = new Tag(DB::getInstance());
 
 if (isset($_GET['add'])) {
     if (isset($_POST['name'])) {

@@ -8,19 +8,22 @@ class Tag {
     }
 
     public function getAllTags() {
-        $sql = "SELECT * FROM tags";
-        $result = mysqli_query($this->db, $sql);
-        return $result;
+        $sql = $this->db->query("SELECT * FROM tags");
+        return $sql;
     }
 
     public function addTag($tag) {
-        $sql = "INSERT INTO tags(tag) VALUES ('$tag')";
-        $result = mysqli_query($this->db, $sql);
+        $sql = $this->db->prepare("INSERT INTO tags(tag) VALUES (?)");
+        $sql->execute(array(
+            $tag
+        ));
     }
 
     public function deleteTag($id) {
-        $sql = "DELETE FROM tags WHERE id=$id";
-        $result = mysqli_query($this->db, $sql);
+        $sql = $this->db->prepare("DELETE FROM tags WHERE id=?");
+        $sql->execute(array(
+            $id
+        ));
         return $result; 
     }
 }

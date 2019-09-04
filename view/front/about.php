@@ -13,8 +13,11 @@ $infos = new Info(DB::getInstance());
                 <p><?=$info['phone'] ?></p>
                 <p><?=$info['mail'] ?></p>
                 <p><?=$info['job'] ?></p>
-                <p>Me concernant: <br><?=$info['description'] ?></p>
+                <div>Me concernant: <br><?=$info['description']?></div>
             <?php } ?>
         </div>
     </div>
 </div>
+
+</body>
+</html>

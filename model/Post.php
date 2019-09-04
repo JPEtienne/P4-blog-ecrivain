@@ -9,6 +9,15 @@ class Post {
         $this->db = $db;
     }
 
+    /**
+     * Add a new post
+     * 
+     * @param string $title
+     * @param string $description
+     * @param string $image
+     * @param int $date
+     * @param string $slug
+     */
     public function addPost ($title, $description, $image, $date, $slug) {
         $sql = $this->db->prepare("INSERT INTO posts(title, description, image, created_at, slug) VALUES (?, ?, ?, ?, ?)");
         $sql->execute(array(
@@ -34,6 +43,11 @@ class Post {
         return $sql;
     }
 
+    /**
+     * Search by keyword for a post
+     * 
+     * @param string $keyword
+     */
     public function search($keyword) {
         $sql = $this->db->prepare("SELECT * FROM posts
                 WHERE title LIKE ?
@@ -45,6 +59,9 @@ class Post {
         return $sql;
     }
 
+    /**
+     * Show the posts on the page by GET variables
+     */
     public function getPost() {
         //By page
         if (isset($_GET['page'])) {
@@ -77,12 +94,20 @@ class Post {
             return $sql;
         }
     }
-
+    
+    /**
+     * Count the total of posts
+     */
     public function countPostPages() {
         $sql = $this->db->query("SELECT id FROM posts");
         return $row = $sql->rowCount();
     }
 
+    /**
+     * Show the post selected
+     * 
+     * @param string $slug
+     */
     public function getSinglePost($slug) {
         $sql = $this->db->prepare("SELECT *  FROM posts WHERE slug=?");
         $sql->execute(array(
@@ -91,6 +116,13 @@ class Post {
         return $sql;        
     }
 
+    /**
+     * Update the post
+     * 
+     * @param string $title
+     * @param string $description
+     * @param string $slug
+     */
     public function updatePost($title, $description, $slug) {
         $newImage = $_FILES['image']['name'];
         if (!empty($newImage)) {
@@ -114,6 +146,11 @@ class Post {
         }
     }
 
+    /**
+     * Delete the post wanted
+     * 
+     * @param string $slug
+     */
     public function deletePostBySlug($slug) {
         $sql = $this->db->prepare("DELETE FROM posts WHERE slug=?");
         $sql->execute(array(
@@ -122,6 +159,9 @@ class Post {
         return $sql; 
     }
 
+    /**
+     * Get the top 5 posts by the number of comments on them
+     */
     public function getPopularPosts() {
         $sql = $this->db->query("SELECT * FROM posts 
                 LEFT JOIN comments ON posts.slug=comments.slug 
@@ -132,6 +172,9 @@ class Post {
         return $sql; 
     }
 
+    /**
+     * Check if there's duplicate slug, used when adding a post
+     */
     public function checkPostSlug($slug) {
         $sql = $this->db->prepare("SELECT * FROM posts WHERE slug=?");
         $sql->execute(array(

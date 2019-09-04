@@ -117,3 +117,6 @@ $comment = new Comment(DB::getInstance());
         </tbody>
     </table>
 </div>
+
+</body>
+</html>

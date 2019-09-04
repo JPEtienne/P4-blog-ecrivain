@@ -10,11 +10,11 @@ $comments = new Comment(DB::getInstance());
     <div class="row row-view">
         <?php foreach($posts->getSinglePost($_GET['slug']) as $posts) { ?>
         <div class="card">
-            <img src="image-<?=$posts['image'];?>" class="card-img-top">
+            <img src="image-<?=$posts['image'];?>" alt="<?=$posts['title'];?>" class="card-img-top">
         </div>
         <div class="card-body">
             <h4 class="card-title"><?=ucfirst($posts['title']);?></h4>
-            <p class="card-text"><?=$posts['description'];?></p>
+            <div class="card-text"><?=$posts['description'];?></div>
         </div>
     </div>
     <?php } ?>
@@ -32,20 +32,19 @@ $comments = new Comment(DB::getInstance());
                 echo '<div class="text-center alert alert-danger">Champs manquants requis</div>';
             }
     } ?>
-
-    <form action="" method="POST">
+    <form action="post-<?=$_GET['slug']?>" method="POST">
         <div class="col-md-10 comment"> 
             <div class="form-group comment-input">
                 <label for="name">Nom</label>
-                <input type="text" name="name" class="form-control">
+                <input type="text" name="name" id="name" class="form-control">
             </div>
             <div class="form-group comment-input">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" class="form-control">
+                <input type="email" name="email" id="email" class="form-control">
             </div>
             <div class="form-group">
                 <label for="description">Commentaire</label>
-                <textarea name="description" class="form-control"></textarea>
+                <textarea name="description" id="description" class="form-control"></textarea>
             </div>
             <div class="form-group">
                 <button type="submit" name="btnComment" class="btn btn-secondary btn-send">Envoyer</button>
@@ -54,8 +53,7 @@ $comments = new Comment(DB::getInstance());
     </form>
     </div>
     <?php foreach($comments->getComment($_GET['slug']) as $comment) { ?>
-     <div class="media">
-        
+     <div class="media">       
         <div class="media-body">
             <strong><?=$comment['name']?></strong>
             <p><?=date('d/m/Y', strtotime($comment['created_at']));?> <a title="signaler" href="manageComment.php?signal=<?=$comment['id']?>&slug=<?=$comment['slug']?>"><i class="fas fa-exclamation-triangle"></i></a></p>
@@ -64,5 +62,7 @@ $comments = new Comment(DB::getInstance());
         </div>
     </div>
     <?php } ?>
-
 </div>
+
+</body>
+</html>

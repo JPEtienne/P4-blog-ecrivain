@@ -18,8 +18,7 @@ $tags = new Tag(DB::getInstance());
                     <div class="img-size">
                         <img src="image-<?= $post['image'];?>" alt="9gag" class="media-object" style="width:500px;">
                     </div>
-                    Ajout: <?=date('d/m/Y', strtotime($post['created_at']));?>
-                    
+                    Ajout: <?=date('d/m/Y', strtotime($post['created_at']));?> 
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading"><a href="post-<?=$post['slug']?>"><?=$post['title'];?></a></h4>
@@ -43,39 +42,25 @@ $tags = new Tag(DB::getInstance());
             </ul> 
             <?php } ?>   
         </div>
-
         <div class="col-md-4 side-menu">
             <h4>Recherche par tags</h4>
             <p>
                 <?php foreach($tags->getAllTags() as $tag) { ?>
-                    <a href="tag-<?=$tag['tag']?>"><button class="btn btn-sm btn-tag"><?=$tag['tag']?></button></a>
+                    <a href="tag-<?=$tag['tag']?>" class="btn btn-sm btn-tag"><?=$tag['tag']?></a>
                 <?php } ?>
             </p>
-            <p>
-                <form action="index.php" method="GET">
-                <h4>Recherche de post</h4>
-                    <input type="text" name="keyword" class="form-control" placeholder="recherche...">
-                </form>
-            </p>
-                <h4>Posts populaires</h4>
+            <form action="index.php" method="GET">
+            <h4>Recherche de post</h4>
+                <input type="text" name="keyword" class="form-control" placeholder="recherche...">
+            </form>
+            <h4>Posts populaires</h4>
             <?php foreach($posts->getPopularPosts() as $p_post) { ?>
-            <p>
-                <a href="post-<?=$p_post['slug']?>" style="color:black; border-bottom: 1px dashed black;"><?=$p_post['title']?></a>
-            </p>
+                <p><a href="post-<?=$p_post['slug']?>" style="color:black; border-bottom: 1px dashed black;"><?=$p_post['title']?></a></p>
             <?php } ?>
         </div>
 
     </div>
 </div>
-<style type="text/css">
-    body {
-        text-align: justify;
-    }
-    img {
-        margin-right: 10px;
-    }
-    .media {
-        margin-top: 10px;
-    }
 
-</style>
+</body>
+</html>

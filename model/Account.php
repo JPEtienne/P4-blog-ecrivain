@@ -8,6 +8,13 @@ class Account {
         $this->db = $db;
     }
 
+    /**
+     * Check if the user exists
+     * 
+     * @param string $username
+     * @param string $password
+     * @return void
+     */
     public function login($username, $password) {
         $sql = $this->db->query("SELECT username, password FROM users WHERE username='$username' AND password='$password'");
         if ($sql->rowCount() > 0) { 

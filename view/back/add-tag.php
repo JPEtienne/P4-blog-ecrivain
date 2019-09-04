@@ -28,3 +28,6 @@ $tags = new Tag(DB::getInstance());
         </div>
     </form>
 </div>
+
+</body>
+</html>

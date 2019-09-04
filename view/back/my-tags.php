@@ -37,3 +37,6 @@ $tags = new Tag(DB::getInstance());
     </tbody>
 </table>
 </div>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 body {
     font-family: Verdana, Geneva, sans-serif!important; 
+    text-align: justify !important;
 }
 
 /* HOME */
@@ -15,6 +16,7 @@ body {
     background: #f8f9fa;
     border-radius: 1%;
     padding: 5px;
+    margin-top: 10px !important;
 }
 
 .media-heading a {
@@ -106,6 +108,15 @@ body {
     padding: 5px;
 }
 
-.about p:nth-child(-n+5) {
+.about  {
     font-weight: bold;
+}
+.about div p {
+    font-weight: normal;
+}
+
+/*BACK*/
+
+.card {
+    margin-top: 10px;
 }

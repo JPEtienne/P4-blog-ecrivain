@@ -7,11 +7,19 @@ class Tag {
         $this->db = $db;
     }
 
+    /**
+     * Show all tags 
+     */
     public function getAllTags() {
         $sql = $this->db->query("SELECT * FROM tags");
         return $sql;
     }
 
+    /**
+     * Add a new tag 
+     * 
+     * @param string $tag
+     */
     public function addTag($tag) {
         $sql = $this->db->prepare("INSERT INTO tags(tag) VALUES (?)");
         $sql->execute(array(
@@ -19,6 +27,11 @@ class Tag {
         ));
     }
 
+    /**
+     * Delete the tag
+     * 
+     * @param int $id
+     */
     public function deleteTag($id) {
         $sql = $this->db->prepare("DELETE FROM tags WHERE id=?");
         $sql->execute(array(

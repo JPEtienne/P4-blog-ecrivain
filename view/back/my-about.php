@@ -49,8 +49,6 @@ $infos = new Info(DB::getInstance());
         language: 'fr'
     });
 </script>
-<style type="text/css">
-    .card {
-        margin-top: 10px;
-    }
-</style>
+
+</body>
+</html>

@@ -27,3 +27,6 @@ if (isset($_POST['btnLogin'])) {
         </div>
     </div>
 </form>
+
+</body>
+</html>
